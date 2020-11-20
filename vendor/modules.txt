@@ -44,11 +44,9 @@ github.com/gorilla/mux
 ## explicit
 # github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e
 ## explicit
-# github.com/stretchr/objx v0.3.0
-## explicit
 # github.com/stretchr/testify v1.6.1
 ## explicit
-# github.com/vincent-petithory/dataurl v0.0.0-20160330182126-9a301d65acbb
+# github.com/vincent-petithory/dataurl v0.0.0-20191104211930-d1553a71de50
 ## explicit
 github.com/vincent-petithory/dataurl
 # go4.org v0.0.0-20160314031811-03efcb870d84
