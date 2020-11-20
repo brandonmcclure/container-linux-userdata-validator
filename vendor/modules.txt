@@ -49,7 +49,7 @@ github.com/gorilla/mux
 # github.com/vincent-petithory/dataurl v0.0.0-20191104211930-d1553a71de50
 ## explicit
 github.com/vincent-petithory/dataurl
-# go4.org v0.0.0-20160314031811-03efcb870d84
+# go4.org v0.0.0-20200411211856-f5505b9728dd
 ## explicit
 go4.org/errorutil
 # gopkg.in/check.v1 v1.0.0-20200902074654-038fdea0a05b
