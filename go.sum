@@ -2,8 +2,8 @@ github.com/ajeddeloh/go-json v0.0.0-20200220154158-5ae607161559 h1:4SPQljF/GJ8Q+
 github.com/ajeddeloh/go-json v0.0.0-20200220154158-5ae607161559/go.mod h1:otnto4/Icqn88WCcM4bhIJNSgsh9VLBuspyyCfvof9c=
 github.com/coreos/coreos-cloudinit v1.14.0 h1:3bQRJaie3QC8EovAVbxiimLQgdxM6DxP1vJfUCEEl9w=
 github.com/coreos/coreos-cloudinit v1.14.0/go.mod h1:hV3swhSwq+bRX5apuk57gG+3fsQacgbrZVxjPTqo0zo=
-github.com/coreos/go-semver v0.1.0 h1:/7eIWhjNpsljQCSU+5NaZzu7HmMvoWnMqOmNZljz1f0=
-github.com/coreos/go-semver v0.1.0/go.mod h1:nnelYz7RCh+5ahJtPPxZlU+153eP4D4r3EedlOD2RNk=
+github.com/coreos/go-semver v0.3.0 h1:wkHLiw0WNATZnSG7epLsujiMCgPAc9xhjJ4tgnAxmfM=
+github.com/coreos/go-semver v0.3.0/go.mod h1:nnelYz7RCh+5ahJtPPxZlU+153eP4D4r3EedlOD2RNk=
 github.com/coreos/go-systemd v0.0.0-20180202092358-40e2722dffea h1:IHPWgevPcOUjTvj3n7Qgm+nie6xs/xV8dmO5MddNTpc=
 github.com/coreos/go-systemd v0.0.0-20180202092358-40e2722dffea/go.mod h1:F5haX7vjVVG0kc13fIWeqUViNPyEJxv/OmvnBo0Yme4=
 github.com/coreos/ignition v0.24.0 h1:RGCRIVtEcOIhrG+pxrrPriqeemAnUu6fSwKGKJoEJ6Q=
