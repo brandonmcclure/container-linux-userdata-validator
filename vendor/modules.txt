@@ -35,6 +35,8 @@ github.com/coreos/yaml
 # github.com/crawford/nap v0.1.0
 ## explicit
 github.com/crawford/nap
+# github.com/davecgh/go-spew v1.1.1
+## explicit
 # github.com/gorilla/context v1.1.1
 ## explicit
 github.com/gorilla/context
