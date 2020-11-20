@@ -35,14 +35,12 @@ github.com/coreos/yaml
 # github.com/crawford/nap v0.1.0
 ## explicit
 github.com/crawford/nap
-# github.com/creack/pty v1.1.11
-## explicit
 # github.com/davecgh/go-spew v1.1.1
 ## explicit
 # github.com/gorilla/mux v1.8.0
 ## explicit
 github.com/gorilla/mux
-# github.com/kr/pty v1.1.8
+# github.com/kr/text v0.2.0
 ## explicit
 # github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e
 ## explicit
@@ -54,8 +52,6 @@ github.com/vincent-petithory/dataurl
 # go4.org v0.0.0-20160314031811-03efcb870d84
 ## explicit
 go4.org/errorutil
-# golang.org/x/sys v0.0.0-20201119102817-f84b799fce68
-## explicit
 # gopkg.in/check.v1 v1.0.0-20200902074654-038fdea0a05b
 ## explicit
 # gopkg.in/yaml.v2 v2.3.0
