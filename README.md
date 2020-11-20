@@ -21,11 +21,11 @@ go get -u ./...
 go mod tidy
 ```
 
-## Deployment
+## Contributor Code of Conduct
 
-This repository is configured for autobuilding on Quay, so that new git
-tags are automatically available as container images.
+In the interest of promoting a fair, diverse, and open community, Kinvolk uses
+its [Code of Conduct](https://github.com/kinvolk/contribution/blob/master/CODE_OF_CONDUCT.md) for all its projects and events.
 
-Deployable tags are pushed to git in the format `yyyymmdd-rev`.
-The corresponding image needs to be manually bumped in the relevant
-Helm chart for the CoreOS kubernetes cluster.
+Please read and uphold this code-of-conduct while participating in Kinvolk
+projects and events.
+
