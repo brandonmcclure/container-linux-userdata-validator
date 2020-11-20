@@ -39,8 +39,7 @@ github.com/crawford/nap
 ## explicit
 # github.com/gorilla/context v1.1.1
 ## explicit
-github.com/gorilla/context
-# github.com/gorilla/mux v1.6.1
+# github.com/gorilla/mux v1.8.0
 ## explicit
 github.com/gorilla/mux
 # github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e
