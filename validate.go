@@ -34,8 +34,9 @@ import (
 
 var (
 	flags = struct {
-		port    int
-		address string
+		port      int
+		address   string
+		checkFile string
 	}{}
 )
 
@@ -57,6 +58,7 @@ func (h panicHandler) Handle(e interface{}) {
 func init() {
 	flag.StringVar(&flags.address, "address", "0.0.0.0", "address to listen on")
 	flag.IntVar(&flags.port, "port", 80, "port to bind on")
+	flag.StringVar(&flags.checkFile, "check-file", "", "only check this file and print report\nThe path can be /dev/stdin for reading from standard input.\nSupported formats are Ignition JSON, coreos-cloudinit config, or a shell script\nA Container Linux Config YAML should be transpiled with ct first.")
 
 	nap.PayloadWrapper = payloadWrapper{}
 	nap.PanicHandler = panicHandler{}
@@ -70,6 +72,28 @@ func init() {
 
 func main() {
 	flag.Parse()
+
+	if flags.checkFile != "" {
+		config, err := ioutil.ReadFile(flags.checkFile)
+		if err != nil {
+			log.Fatalln(err)
+		}
+		reports, err := validateInput(config)
+		if reports != nil {
+			if len(reports) == 0 {
+				fmt.Println("Valid user-data")
+			} else {
+				fmt.Println("Found warnings and errors:")
+				for _, entry := range reports {
+					fmt.Printf("%v\n", entry)
+				}
+			}
+		}
+		if err != nil {
+			log.Fatalln(err)
+		}
+		return
+	}
 
 	router := mux.NewRouter()
 	server := &http.Server{
@@ -88,6 +112,42 @@ func optionsValidate(r *http.Request) (interface{}, nap.Status) {
 	return nil, nap.OK{}
 }
 
+func wrapValidateEntries(entries []validate.Entry) []interface{} {
+	var interfaceSlice []interface{} = make([]interface{}, len(entries))
+	for i, e := range entries {
+		interfaceSlice[i] = e
+	}
+	return interfaceSlice
+}
+
+func wrapReportEntries(entries []report.Entry) []interface{} {
+	var interfaceSlice []interface{} = make([]interface{}, len(entries))
+	for i, e := range entries {
+		interfaceSlice[i] = e
+	}
+	return interfaceSlice
+}
+
+func validateInput(config []byte) ([]interface{}, error) {
+	_, rpt, err := ignConfig.Parse(config)
+	switch err {
+	case errors.ErrCloudConfig, errors.ErrEmpty, errors.ErrScript:
+		rpt, err := validate.Validate(config)
+		if err != nil {
+			return nil, err
+		}
+		return wrapValidateEntries(rpt.Entries()), nil
+	case errors.ErrUnknownVersion:
+		return wrapReportEntries([]report.Entry{{
+			Kind:    report.EntryError,
+			Message: "Failed to parse config. Is this a valid Ignition Config, Cloud-Config, or script?",
+		}}), nil
+	default:
+		rpt.Sort()
+		return wrapReportEntries(rpt.Entries), nil
+	}
+}
+
 func putValidate(r *http.Request) (interface{}, nap.Status) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
@@ -96,23 +156,11 @@ func putValidate(r *http.Request) (interface{}, nap.Status) {
 
 	config := bytes.Replace(body, []byte("\r"), []byte{}, -1)
 
-	_, rpt, err := ignConfig.Parse(config)
-	switch err {
-	case errors.ErrCloudConfig, errors.ErrEmpty, errors.ErrScript:
-		rpt, err := validate.Validate(config)
-		if err != nil {
-			return nil, nap.InternalError{err.Error()}
-		}
-		return rpt.Entries(), nap.OK{}
-	case errors.ErrUnknownVersion:
-		return []report.Entry{{
-			Kind:    report.EntryError,
-			Message: "Failed to parse config. Is this a valid Ignition Config, Cloud-Config, or script?",
-		}}, nap.OK{}
-	default:
-		rpt.Sort()
-		return rpt.Entries, nap.OK{}
+	reports, err := validateInput(config)
+	if err != nil {
+		return reports, nap.InternalError{err.Error()}
 	}
+	return reports, nap.OK{}
 }
 
 func getHealth(r *http.Request) (interface{}, nap.Status) {
