@@ -30,5 +30,5 @@ publish:
 	docker login; docker push $(REGISTRY_NAME)$(REPOSITORY_NAME)$(IMAGE_NAME)$(TAG); docker logout
 
 clean:
-    -@docker stop $(IMAGE_NAME)
-    -@docker rm -v $(IMAGE_NAME)
+	-@docker stop $(IMAGE_NAME)
+	-@docker rm -v $(IMAGE_NAME)
