@@ -12,6 +12,10 @@ The included multi-stage Dockerfile can be used to build working images. Just ru
 docker build .
 ```
 
+## How to use
+
+Run `make build run` This will run the container on port 8080. Make a `PUT` request to `http://localhost:8080/validate` with the JSON igntion file in the body of your request.
+
 ## Updating dependencies
 
 The following commands can be used to update the dependencies of this project:
