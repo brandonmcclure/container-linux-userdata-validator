@@ -1,4 +1,4 @@
-FROM golang as build
+FROM golang:1.16 as build
 WORKDIR /go/src/github.com/coreos/container-linux-userdata-validator/
 COPY . .
 RUN CGO_ENABLED=0 go build -o validate ./...
